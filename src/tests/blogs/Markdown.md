@@ -1,4 +1,6 @@
 ---
-title: title
-description: test
+title: My title
+description: Description here
 ---
+
+Blog post body here

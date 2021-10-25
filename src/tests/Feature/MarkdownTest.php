@@ -8,7 +8,7 @@ use Orchestra\Testbench\TestCase;
 class MarkdownTest extends TestCase
 {
     /** @test */
-    public function the_head_and_body_gets_split()
+    public function experiment()
     {
         $data = MarkdownParser::parse('# testing');
         $this->assertEquals('<h1>testing</h1>', $data);
