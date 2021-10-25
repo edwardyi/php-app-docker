@@ -34,7 +34,7 @@ services:
         ports:
             - "3307:3306"
         volumes:
-            - ./mysql:/var/lib/mysql
+            - mydata:/var/lib/mysql
         environment:
             MYSQL_DATABASE: homestead
             MYSQL_USER: homestead
@@ -43,5 +43,7 @@ services:
             SERVICE_TAGS: dev
             SERVICE_NAME: mysql
 
+volumes:
+    mydata:
 networks:
     laravel:
