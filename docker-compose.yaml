@@ -26,6 +26,8 @@ services:
             - "9001:9000"
         networks:
             - laravel
+        commands: >
+            alias phpunit="clear && ./vendor/phpunit/phpunit/phpunit"
     mysql:
         image: mysql:5.7.22
         container_name: mysql

@@ -1,0 +1,27 @@
+{
+    "name": "edwardyi/press",
+    "description": "Markdown powered blog for the laravel framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Edward Yi",
+            "email": "yi.wei.jie@hotmail.com"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^5.20"
+    },
+    "autoload": {
+        "psr-4": {
+            "edwardyi\\Press\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "edwardyi\\Press\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "erusev/parsedown": "^1.7"
+    }
+}
