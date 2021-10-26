@@ -1,6 +1,6 @@
 <?php
 
-namespace edwardyi\Press;
+namespace edwardyi\Press\Console;
 
 use Illuminate\Console\Command;
 

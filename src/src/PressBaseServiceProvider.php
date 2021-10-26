@@ -2,6 +2,7 @@
 
 namespace edwardyi\Press;
 
+use edwardyi\Press\Console\ProcessCommand;
 use Illuminate\Support\ServiceProvider;
 
 class PressBaseServiceProvider extends ServiceProvider
