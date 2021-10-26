@@ -2,9 +2,7 @@
 
 namespace edwardyi\Press\Fields;
 
-use edwardyi\Press\MarkdownParser;
-
-class Body extends FieldContract
+class Extra extends FieldContract
 {
     /**
      * @var string $type
@@ -15,8 +13,12 @@ class Body extends FieldContract
      */
     public static function process($type, $value, $data)
     {
+        $extraData = isset($data['extra']) ? (array) json_decode($data['extra']) : [];
+
         return [
-            $type => MarkdownParser::parse($value)
+            'extra' => json_encode(array_merge($extraData, [
+                $type => $value
+            ]))
         ];
     }
 }

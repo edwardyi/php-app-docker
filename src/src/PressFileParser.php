@@ -18,6 +18,11 @@ class PressFileParser
      */
     protected $data;
 
+    /**
+     * @var string $rawData
+     */
+    protected $rawData;
+
     public function __construct($filename)
     {
         $this->filename = $filename;
@@ -29,6 +34,11 @@ class PressFileParser
         $this->processFields();
     }
 
+    public function getRawData()
+    {
+        return $this->rawData;
+    }
+
     public function getData()
     {
         return $this->data;
@@ -38,20 +48,20 @@ class PressFileParser
     {
         preg_match('/^\-{3}(.*?)\-{3}(.*)/s', 
             File::exists($this->filename) ? File::get($this->filename) : $this->filename,
-            $this->data
+            $this->rawData
         );
     }
 
     protected function explodeData()
     {
-        foreach (explode("\n", trim($this->data[1])) as $fieldValue)
+        foreach (explode("\n", trim($this->rawData[1])) as $fieldValue)
         {
             preg_match('/(.*):\s?(.*)/', $fieldValue, $fieldArray);
 
             $this->data[$fieldArray[1]] = $fieldArray[2];
         }
 
-        $this->data['body'] = trim($this->data[2]);
+        $this->data['body'] = trim($this->rawData[2]);
     }
 
     protected function processFields()
@@ -65,12 +75,14 @@ class PressFileParser
             // @see https://github.com/illuminate/support/blob/master/Str.php
 
             $class = 'edwardyi\\Press\\Fields\\'. Str::title($field);
-            if (class_exists($class) && method_exists($class, 'process')) {
-                $this->data = array_merge(
-                    $this->data,
-                    $class::process($field, $value)
-                );
+            if (!class_exists($class) && !method_exists($class, 'process')) {
+                $class = 'edwardyi\\Press\\Fields\\Extra';
             }
+
+            $this->data = array_merge(
+                $this->data,
+                $class::process($field, $value, $this->data)
+            );
         }
     }
 }

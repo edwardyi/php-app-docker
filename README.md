@@ -3,7 +3,7 @@
 
 ## Flow
 
-![Flow](https://github.com/edwardyi/php-app-docker/blob/laravel-package-development/flow.jpg?raw=true)
+![Flow](https://raw.githubusercontent.com/edwardyi/php-app-docker/laravel-package-development/flow.png)
 
 ### Composer
 

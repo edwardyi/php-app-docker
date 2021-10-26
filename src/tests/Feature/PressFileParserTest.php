@@ -14,7 +14,7 @@ class PressFileParserTest extends TestCase
     {
         $pressFileParser = new PressFileParser(__DIR__.'/../blogs/Markdown.md');
 
-        $data = $pressFileParser->getData();
+        $data = $pressFileParser->getRawData();
 
         $this->assertStringContainsString('title: My title', $data[1]);
         $this->assertStringContainsString('description: Description here', $data[1]);
@@ -26,7 +26,7 @@ class PressFileParserTest extends TestCase
     {
         $pressFileParser = new PressFileParser("---\ntitle: My title---\nBlog post body here");
 
-        $data = $pressFileParser->getData();
+        $data = $pressFileParser->getRawData();
 
         $this->assertStringContainsString('title: My title', $data[1]);
         $this->assertStringContainsString(('Blog post body here'), $data[2]);
@@ -65,5 +65,25 @@ class PressFileParserTest extends TestCase
 
         $this->assertInstanceOf(Carbon::class, $data['date']);
         $this->assertEquals('05/14/1998', $data['date']->format('m/d/Y'));
+    }
+
+    /** @test */
+    public function an_extra_fields_get_saved()
+    {
+        $pressFileParser = new PressFileParser("---\nauthor: Jone Doe---\n\n");
+
+        $data = $pressFileParser->getData();
+
+        $this->assertEquals(json_encode(['author' => 'Jone Doe']), $data['extra']);
+    }
+
+    /** @test */
+    public function two_additional_fields_are_put_into_extra()
+    {
+        $pressFileParser = new PressFileParser("---\nauthor: Jone Doe\nimage: some\image.png---\n\n");
+
+        $data = $pressFileParser->getData();
+
+        $this->assertEquals(json_encode(['author' => 'Jone Doe', 'image' => 'some\image.png']), $data['extra']);
     }
 }
