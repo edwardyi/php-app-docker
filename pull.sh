@@ -1,1 +1,1 @@
-git clone https://github.com/edwardyi/php-app-docker.git || mv php-app-docker ../ -y
+git clone https://github.com/edwardyi/php-app-docker.git

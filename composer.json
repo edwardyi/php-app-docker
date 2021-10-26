@@ -63,7 +63,7 @@
     "repositories": {
         "dev-package": {
             "type": "path",
-            "url": "../php-app-docker/src",
+            "url": "php-app-docker/src",
             "options": {
                 "symlink": true
             }

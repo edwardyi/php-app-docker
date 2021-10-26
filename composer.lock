@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bf6f9fbc73db3c3c0d402cd92678215",
+    "content-hash": "9ac20139a320c751f152f401720d8c91",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -434,7 +434,7 @@
             "version": "dev-laravel-package-development",
             "dist": {
                 "type": "path",
-                "url": "../php-app-docker/src",
+                "url": "php-app-docker/src",
                 "reference": "7bd705bf7fbd90e98f42716ab9e06eb2a09ee621"
             },
             "require": {
