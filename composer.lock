@@ -435,7 +435,7 @@
             "dist": {
                 "type": "path",
                 "url": "php-app-docker/src",
-                "reference": "7bd705bf7fbd90e98f42716ab9e06eb2a09ee621"
+                "reference": "82065f6c9ed4a460dfcd79f037f60202a85303ac"
             },
             "require": {
                 "erusev/parsedown": "^1.7"
@@ -444,6 +444,13 @@
                 "orchestra/testbench": "^5.20"
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "edwardyi\\Press\\PressBaseServiceProvider"
+                    ]
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "edwardyi\\Press\\": "src/"
