@@ -5,6 +5,12 @@
 
 ![Flow](https://raw.githubusercontent.com/edwardyi/php-app-docker/laravel-package-development/flow.png)
 
+### Usage
+
+```cmd=
+composer require edwardyi/press
+```
+
 ### Composer
 
 ```cmd=
