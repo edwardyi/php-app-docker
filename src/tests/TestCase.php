@@ -7,6 +7,13 @@ use Orchestra\Testbench\TestCase as TestbenchTestCase;
 
 class TestCase extends TestbenchTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->withFactories(__DIR__.'/../src/database/factories');
+    }
+
     /**
      * Get package providers.
      * 
@@ -19,5 +26,22 @@ class TestCase extends TestbenchTestCase
         return [
             PressBaseServiceProvider::class
         ];
+    }
+
+    /**
+     * Get Environment Setups.
+     * 
+     * @param \Illuminate\Foundation\Application $app
+     *
+     * @return void
+     */
+    protected function getEnvironmentSetUp($app)
+    {
+        $app['config']->set('database.default', 'testdb');
+        $app['config']->set('database.connections.testdb', [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => ''
+        ]);
     }
 }
