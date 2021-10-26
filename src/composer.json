@@ -23,5 +23,12 @@
     },
     "require": {
         "erusev/parsedown": "^1.7"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "edwardyi\\Press\\PressBaseServiceProvider"
+            ]
+        }
     }
 }
