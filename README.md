@@ -1,6 +1,10 @@
 # Laravel Package Development
 ###### `coder tape` `laravel`
 
+## Flow
+
+![Flow](https://github.com/edwardyi/php-app-docker/blob/laravel-package-development/flow.jpg?raw=true)
+
 ### Composer
 
 ```cmd=
@@ -23,8 +27,8 @@ alias pf="clear && ./vendor/phpunit/phpunit/phpunit --filter"
 
 ### Tools
 
-https://www.phpliveregex.com/p/Cou
-https://www.phpliveregex.com/p/CoO
+* https://www.phpliveregex.com/p/Cou
+* https://www.phpliveregex.com/p/CoO
 
 ### Reference
 https://www.youtube.com/watch?v=MZ7I400-9Zg&list=PLpzy7FIRqpGBQ_aqz_hXDBch1aAA-lmgu
