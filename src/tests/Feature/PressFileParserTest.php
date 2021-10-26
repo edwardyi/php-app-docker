@@ -3,9 +3,7 @@
 namespace edwardyi\Press\Tests;
 
 use Carbon\Carbon;
-use edwardyi\Press\MarkdownParser;
 use edwardyi\Press\PressFileParser;
-use Orchestra\Testbench\TestCase;
 
 class PressFileParserTest extends TestCase
 {
