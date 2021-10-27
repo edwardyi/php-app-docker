@@ -1,1 +1,1 @@
-git clone https://github.com/edwardyi/php-app-docker.git
+cd php-app-docker/ && git pull && cd ..
