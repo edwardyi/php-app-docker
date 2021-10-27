@@ -44,7 +44,7 @@ class PressBaseServiceProvider extends ServiceProvider
     {
         return [
             'prefix' => Press::path(), // call static method path to load path from config
-            'namespace' => 'edwardyi/Press/Http/Controllers'
+            'namespace' => 'edwardyi\Press\Http\Controllers'
         ];
     }
 
