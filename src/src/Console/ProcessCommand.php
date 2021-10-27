@@ -3,11 +3,10 @@
 namespace edwardyi\Press\Console;
 
 use edwardyi\Press\Exceptions\FileDriverDirectoryNotFoundException;
-use edwardyi\Press\Post;
 use edwardyi\Press\Facades\Press;
+use edwardyi\Press\Repositories\PostRepository;
 use Exception;
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
 
 class ProcessCommand extends Command
 {
@@ -15,7 +14,7 @@ class ProcessCommand extends Command
 
     protected $description = 'Updates blog posts.';
 
-    public function handle()
+    public function handle(PostRepository $postRepository)
     {
         if (Press::configNotPublished()) {
             return $this->warn("Please publish the config file by running\n".
@@ -27,13 +26,7 @@ class ProcessCommand extends Command
 
             foreach ($posts as $post) {
                 // Persist to the DB
-                Post::create([
-                    'identifier' => $post['identifier'],
-                    'slug' => Str::slug($post['title']),
-                    'title' => $post['title'],
-                    'body' => $post['body'],
-                    'extra' => $post['extra'] ?? []
-                ]);
+                $postRepository->save($post);
             }
         } catch (Exception $e) {
             throw new FileDriverDirectoryNotFoundException($e->getMessage());
