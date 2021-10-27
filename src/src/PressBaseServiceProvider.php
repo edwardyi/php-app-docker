@@ -3,6 +3,7 @@
 namespace edwardyi\Press;
 
 use edwardyi\Press\Console\ProcessCommand;
+use Illuminate\Routing\Route;
 use Illuminate\Support\ServiceProvider;
 
 class PressBaseServiceProvider extends ServiceProvider
@@ -26,6 +27,10 @@ class PressBaseServiceProvider extends ServiceProvider
     private function registerResources()
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'press'); // use press alias to access package's view
+
+        $this->registerRoutes();
     }
 
     protected function registerPublishing()
@@ -33,5 +38,19 @@ class PressBaseServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/press.php' => config_path('press.php')
         ], 'press-config');
+    }
+
+    private function loadRouteConfigurations()
+    {
+        return [
+            'prefix' => Press::path() // call static method path to load path from config
+        ];
+    }
+
+    protected function registerRoutes()
+    {
+        Route::group($this->loadRouteConfigurations(), function(){
+            $this->loadRoutesFrom('../routes/web.php');
+        });
     }
 }
