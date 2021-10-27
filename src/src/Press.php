@@ -14,7 +14,7 @@ class Press
     public static function driver()
     {
         $driver = Str::title(config('press.driver'));
-        $class = 'edwardyi\\Press\\Drivers\\'.$driver;
+        $class = 'edwardyi\\Press\\Drivers\\'.$driver.'Driver';
 
         return new $class;
     }

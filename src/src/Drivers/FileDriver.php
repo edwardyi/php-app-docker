@@ -5,7 +5,7 @@ namespace edwardyi\Press\Drivers;
 use edwardyi\Press\PressFileParser;
 use Illuminate\Support\Facades\File as FacadesFile;
 
-class File
+class FileDriver
 {
     public function fetchPosts()
     {
@@ -16,6 +16,6 @@ class File
             $posts[] = (new PressFileParser($file->getPathname()))->getData();
         }
 
-        return $posts;
+        return $posts ?? [];
     }
 }
