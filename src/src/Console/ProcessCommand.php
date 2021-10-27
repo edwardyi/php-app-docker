@@ -16,8 +16,13 @@ class ProcessCommand extends Command
 
     public function handle()
     {
-         // Fetch all posts
-         $files = File::files('blogs');
+        if (is_null(config('press'))) {
+            return $this->warn('Please publish the config file by running\n'.
+                ' php artisan vendor:publish --tag=press-config');
+        }
+
+        // Fetch all posts
+        $files = File::files(config('press.path'));
 
         // Process each file
         foreach ($files as $file) {
