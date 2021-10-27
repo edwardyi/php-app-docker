@@ -17,8 +17,8 @@ class ProcessCommand extends Command
     public function handle()
     {
         if (is_null(config('press'))) {
-            return $this->warn('Please publish the config file by running\n'.
-                ' php artisan vendor:publish --tag=press-config');
+            return $this->warn("Please publish the config file by running\n".
+                " php artisan vendor:publish --tag=press-config");
         }
 
         // Fetch all posts
