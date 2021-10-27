@@ -28,7 +28,7 @@ class ProcessCommand extends Command
             foreach ($posts as $post) {
                 // Persist to the DB
                 Post::create([
-                    'identifier' => $posts['identifier'],
+                    'identifier' => $post['identifier'],
                     'slug' => Str::slug($post['title']),
                     'title' => $post['title'],
                     'body' => $post['body'],
@@ -36,7 +36,7 @@ class ProcessCommand extends Command
                 ]);
             }
         } catch (Exception $e) {
-            throw new FileDriverDirectoryNotFoundException();
+            throw new FileDriverDirectoryNotFoundException($e->getMessage());
         }
     }
 

@@ -19,7 +19,7 @@ class FileDriver extends Driver
 
         // Process each file
         foreach ($files as $file) {
-            $this->parse($file, $file->getFilename());
+            $this->parse($file->getPathname(), $file->getFilename());
         }
 
         return $this->posts;
