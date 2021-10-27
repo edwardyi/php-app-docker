@@ -3,7 +3,7 @@
 namespace edwardyi\Press;
 
 use edwardyi\Press\Console\ProcessCommand;
-use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class PressBaseServiceProvider extends ServiceProvider
@@ -50,7 +50,7 @@ class PressBaseServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group($this->loadRouteConfigurations(), function(){
-            $this->loadRoutesFrom('../routes/web.php');
+            $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         });
     }
 }

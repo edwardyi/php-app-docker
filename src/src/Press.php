@@ -21,6 +21,6 @@ class Press
 
     public static function path()
     {
-        return config('press.path');
+        return config('press.path', 'blogs');
     }
 }
