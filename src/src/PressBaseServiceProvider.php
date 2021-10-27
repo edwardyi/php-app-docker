@@ -43,7 +43,8 @@ class PressBaseServiceProvider extends ServiceProvider
     private function loadRouteConfigurations()
     {
         return [
-            'prefix' => Press::path() // call static method path to load path from config
+            'prefix' => Press::path(), // call static method path to load path from config
+            'namespace' => 'edwardyi/Press/Http/Controllers'
         ];
     }
 
