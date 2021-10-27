@@ -5,6 +5,7 @@ namespace edwardyi\Press;
 use edwardyi\Press\Console\ProcessCommand;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use edwardyi\Press\Facades\Press;
 
 class PressBaseServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,8 @@ class PressBaseServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'press'); // use press alias to access package's view
 
+        $this->registerFacades();
+
         $this->registerRoutes();
     }
 
@@ -52,6 +55,13 @@ class PressBaseServiceProvider extends ServiceProvider
     {
         Route::group($this->loadRouteConfigurations(), function(){
             $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+        });
+    }
+
+    protected function registerFacades()
+    {
+        $this->app->singleton('Press', function($app) {
+            return new \edwardyi\Press\Press();
         });
     }
 }

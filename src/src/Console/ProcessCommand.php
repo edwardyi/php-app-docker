@@ -4,7 +4,7 @@ namespace edwardyi\Press\Console;
 
 use edwardyi\Press\Exceptions\FileDriverDirectoryNotFoundException;
 use edwardyi\Press\Post;
-use edwardyi\Press\Press;
+use edwardyi\Press\Facades\Press;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
