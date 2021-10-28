@@ -166,6 +166,8 @@ return [
          * Package Service Providers...
          */
 
+         App\Providers\PressServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
