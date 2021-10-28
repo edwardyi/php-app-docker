@@ -39,7 +39,8 @@ class PostRepository
         // $post['extra'] ?? json_encode([])
         $extra = (array) json_decode($post['extra'] ?? '[]');
 
-        $attributes = array_except($extra, ['body', 'title', 'extra', 'identifier']);
+        // exclude other fields from post array to build extra fields
+        $attributes = array_except($post, ['body', 'title', 'extra', 'identifier']);
 
         return json_encode(array_merge($extra, $attributes));
     }
