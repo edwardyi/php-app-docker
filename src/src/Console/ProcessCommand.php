@@ -24,9 +24,13 @@ class ProcessCommand extends Command
         try {
             $posts = Press::driver()->fetchPosts();
 
+            $this->info('Total posts:'. count($posts));
+
             foreach ($posts as $post) {
                 // Persist to the DB
                 $postRepository->save($post);
+
+                $this->info('Save post:'. $post['title']);
             }
         } catch (Exception $e) {
             throw new FileDriverDirectoryNotFoundException($e->getMessage());

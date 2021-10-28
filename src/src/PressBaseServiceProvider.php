@@ -43,6 +43,10 @@ class PressBaseServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/press.php' => config_path('press.php')
         ], 'press-config');
+
+        $this->publishes([
+            __DIR__.'/Console/stubs/PressServiceProvider.stub' => app_path('PressServiceProvider.php')
+        ], 'press-provider');
     }
 
     private function loadRouteConfigurations()
