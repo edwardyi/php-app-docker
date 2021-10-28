@@ -3,8 +3,10 @@
 namespace edwardyi\Press;
 
 use Carbon\Carbon;
+use edwardyi\Press\Facades\Press;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use ReflectionClass;
 
 class PressFileParser
 {
@@ -74,7 +76,8 @@ class PressFileParser
         {
             // @see https://github.com/illuminate/support/blob/master/Str.php
 
-            $class = 'edwardyi\\Press\\Fields\\'. Str::title($field);
+            $class = $this->getField(title_case($field));
+
             if (!class_exists($class) && !method_exists($class, 'process')) {
                 $class = 'edwardyi\\Press\\Fields\\Extra';
             }
@@ -83,6 +86,25 @@ class PressFileParser
                 $this->data,
                 $class::process($field, $value, $this->data)
             );
+        }
+    }
+
+    /**
+     * getField
+     * 
+     * @var string $field
+     * 
+     * @return string
+     * @throws \ReflectionException
+     */
+    protected function getField($field)
+    {
+        // $class = 'edwardyi\\Press\\Fields\\'. Str::title($field);
+        foreach (Press::availableFields() as $availableField) {
+            $class = new ReflectionClass($availableField);
+            if ($class->getShortName() == $field) {
+                return $class->getName();
+            }
         }
     }
 }
