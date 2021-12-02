@@ -25,16 +25,36 @@
                 <div>{{ $errors->first('email') }}</div>
                 <!-- <input type="submit" name="submit" value="submit" /> -->
             </div>
-            <button type="submit">Submit</button>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="active" name="active" class="form-control">
+                    <option value="" disabled="disabled">Please Select Status</option>
+                    <option value="1">Active</option>
+                    <option value="0">InActive</option>
+                </select>
+                <div>{{$errors->first('active')}}</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>
 <hr>
 
 <div class="row">
-    <div class="col-12">
+    <div class="col-6">
+        <h3> Active Customer </h3>
         <ul>
-            @foreach($customers as $customer)
+            @foreach($activeCustomers as $customer)
+                <li>
+                    {{ $customer->name }}<span class="text-muted">({{ $customer->email }})</span>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+    <div class="col-6">
+        <h3> InActive Customer </h3>
+        <ul>
+            @foreach($inactiveCustomers as $customer)
                 <li>
                     {{ $customer->name }}<span class="text-muted">({{ $customer->email }})</span>
                 </li>

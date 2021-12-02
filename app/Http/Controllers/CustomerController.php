@@ -17,18 +17,25 @@ class CustomerController extends Controller
             'google'
         ];
          */
-        $customers = Customer::all();
+        // $customers = Customer::all();
+        $activeCustomers = Customer::where('active', '1')->get();
+        $inactiveCustomers = Customer::where('active', '0')->get();
 
-        return View('customer.list', [
-            'customers' => $customers
-        ]);
+        return View('customer.list', compact('activeCustomers', 'inactiveCustomers'));
+
+        // return View('customer.list', [
+        //     // 'customers' => $customers
+        //     'activeCustomers' => $activeCustomers,
+        //     'inactiveCustomers' => $inactiveCustomers
+        // ]);
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
             'name' => 'required|min:3',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'active' => 'required|integer'
         ]);
 
         Customer::create($data);
