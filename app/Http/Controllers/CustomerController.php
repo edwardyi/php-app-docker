@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Customer;
 use App\View;
 use Illuminate\Http\Request;
@@ -18,10 +19,14 @@ class CustomerController extends Controller
         ];
          */
         // $customers = Customer::all();
-        $activeCustomers = Customer::where('active', '1')->get();
-        $inactiveCustomers = Customer::where('active', '0')->get();
+        // $activeCustomers = Customer::where('active', '1')->get();
+        // $inactiveCustomers = Customer::where('active', '0')->get();
+        $activeCustomers = Customer::active()->get();
+        $inactiveCustomers = Customer::inactive()->get();
 
-        return View('customer.list', compact('activeCustomers', 'inactiveCustomers'));
+        $companies = Company::all();
+
+        return View('customer.list', compact('activeCustomers', 'inactiveCustomers', 'companies'));
 
         // return View('customer.list', [
         //     // 'customers' => $customers
@@ -35,8 +40,12 @@ class CustomerController extends Controller
         $data = $request->validate([
             'name' => 'required|min:3',
             'email' => 'required|email',
-            'active' => 'required|integer'
+            'active' => 'required|integer',
+            // 'random' => '',
+            'company_id' => 'required'
         ]);
+
+        // dd($data);
 
         Customer::create($data);
 
