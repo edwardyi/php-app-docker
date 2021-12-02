@@ -1,5 +1,5 @@
 @extends('layout')
 
 @section('content')
-contact in view
+<h1>Welcome to Laravel</h1>
 @endsection
