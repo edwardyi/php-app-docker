@@ -9,30 +9,18 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    public function list()
+    public function index()
     {
-        /**
-        $customers = [
-            'apple',
-            'telsa',
-            'google'
-        ];
-         */
-        // $customers = Customer::all();
-        // $activeCustomers = Customer::where('active', '1')->get();
-        // $inactiveCustomers = Customer::where('active', '0')->get();
-        $activeCustomers = Customer::active()->get();
-        $inactiveCustomers = Customer::inactive()->get();
+        $customers = Customer::all();
 
+        return View('customer.index', compact('customers'));
+    }
+
+    public function create()
+    {
         $companies = Company::all();
 
-        return View('customer.list', compact('activeCustomers', 'inactiveCustomers', 'companies'));
-
-        // return View('customer.list', [
-        //     // 'customers' => $customers
-        //     'activeCustomers' => $activeCustomers,
-        //     'inactiveCustomers' => $inactiveCustomers
-        // ]);
+        return View('customer.create', compact('companies'));
     }
 
     public function store(Request $request)
@@ -49,6 +37,7 @@ class CustomerController extends Controller
 
         Customer::create($data);
 
-        return back();
+        // return back();
+        return redirect('/customers');
     }
 }

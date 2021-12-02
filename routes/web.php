@@ -35,6 +35,6 @@ Route::get('/customer-test', function() {
 
 // https://stackoverflow.com/questions/63807930/target-class-controller-does-not-exist-laravel-8
 // Route::get('/customers', [CustomerController::class, "list"]);
-Route::get('/customers', 'App\Http\Controllers\CustomerController@list');
-
+Route::get('/customers', 'App\Http\Controllers\CustomerController@index');
+Route::get('/customers/create', 'App\Http\Controllers\CustomerController@create');
 Route::post('/customers', [CustomerController::class, 'store']);

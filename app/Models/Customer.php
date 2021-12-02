@@ -20,6 +20,14 @@ class Customer extends Model
     ];
      */
 
+    public function getActiveAttribute($attribute)
+    {
+        return [
+            0 => 'active',
+            1 => 'inactive'
+        ][$attribute];
+    }
+
     public function scopeActive($query)
     {
         return $this->where('active', 1);
