@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', 'contact form')
 
@@ -11,6 +11,7 @@
 </div>
 
 @if(!Session::has('message'))
+
 <div class="row">
     <div class="col-12">
         <form action="/contact" method="POST">
