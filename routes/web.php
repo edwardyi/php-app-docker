@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::view('/contact', 'contact');
+Route::get('/contact', [ContactController::class, 'create']);
+Route::post('/contact', [ContactController::class, 'store']);
+
 Route::view('/about', 'about');
 
 Route::get('/customer-test', function() {

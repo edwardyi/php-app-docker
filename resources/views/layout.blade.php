@@ -12,6 +12,12 @@
     <div class="container">
         @include('nav', ['test' => 123])
 
+        @if(session()->has('message'))
+        <div class="alert alert-success">
+            <strong>Success</strong> {{Session::get('message')}}
+        </div>
+        @endif
+
         @yield('content')
     </div>
     
