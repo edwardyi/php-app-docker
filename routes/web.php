@@ -46,7 +46,7 @@ Route::get('/customer-test', function() {
 // Route::patch('/customers/{customer}', [CustomerController::class, 'update']);
 // Route::delete('/customers/{customer}', [CustomerController::class, 'destroy']);
 
-Route::resource('/customers', CustomerController::class);
+Route::resource('/customers', CustomerController::class); // ->middleware('auth')
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
