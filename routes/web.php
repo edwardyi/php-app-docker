@@ -37,4 +37,5 @@ Route::get('/customer-test', function() {
 // Route::get('/customers', [CustomerController::class, "list"]);
 Route::get('/customers', 'App\Http\Controllers\CustomerController@index');
 Route::get('/customers/create', 'App\Http\Controllers\CustomerController@create');
+Route::get('/customers/{customer}', [CustomerController::class, 'show']);
 Route::post('/customers', [CustomerController::class, 'store']);

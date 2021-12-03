@@ -19,7 +19,9 @@
         </div>
         <div class="col-4">
             <span>
-                {{$customer->name}}
+                <p>
+                    <a href="/customers/{{$customer->id}}">{{$customer->name}}</a>
+                </p>
             </span>
         </div>
         <div class="col-4">
