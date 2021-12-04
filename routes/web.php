@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Middleware\ShowOddPage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,7 @@ Route::get('/', function () {
 Route::get('/contact', [ContactController::class, 'create']);
 Route::post('/contact', [ContactController::class, 'store']);
 
-Route::view('/about', 'about');
+Route::view('/about', 'about')->middleware('show.odd.page');
 
 Route::get('/customer-test', function() {
     $customers = [
@@ -50,3 +51,5 @@ Route::resource('/customers', CustomerController::class); // ->middleware('auth'
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/test-random', [App\Http\Controllers\HomeController::class, 'test'])->middleware(ShowOddPage::class);
