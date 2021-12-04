@@ -52,4 +52,4 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/test-random', [App\Http\Controllers\HomeController::class, 'test'])->middleware(ShowOddPage::class);
+Route::get('/test-random', [App\Http\Controllers\HomeController::class, 'test'])->name('test.odd.page')->middleware(ShowOddPage::class);

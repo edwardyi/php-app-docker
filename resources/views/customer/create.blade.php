@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="col-12">
-        <form action="/customers" method="POST">
+        <form action="{{url('/customers')}}" method="POST">
             @include('customer.form')
             <button type="submit" class="btn btn-primary">Add</button>
         </form>
