@@ -15,6 +15,8 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <my-test-button content="DDD" type="submit"></my-test-button>
+                    <example-component></example-component>
                 </div>
             </div>
         </div>
