@@ -6,7 +6,7 @@ use App\Events\NewCustomerRegisteredEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class NotifyAdminListener
+class NewsLetterListener
 {
     /**
      * Create the event listener.
@@ -26,6 +26,6 @@ class NotifyAdminListener
      */
     public function handle(NewCustomerRegisteredEvent $event)
     {
-        dump("notify admin inside listener");
+        dump("news letter listener");
     }
 }
