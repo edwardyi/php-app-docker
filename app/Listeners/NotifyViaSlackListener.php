@@ -26,7 +26,6 @@ class NotifyViaSlackListener
      */
     public function handle(NewCustomerRegisteredEvent $event)
     {
-        sleep(10);
         dump("notify slack inside listener");
     }
 }

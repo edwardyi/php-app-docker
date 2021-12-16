@@ -52,7 +52,7 @@ class CustomerController extends Controller
         $customerData = Customer::create($data);
 
         // return back();
-        // return redirect('/customers');
+        return redirect('/customers');
     }
 
     public function show(Customer|int $customer)
