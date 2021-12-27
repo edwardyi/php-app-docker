@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewCustomerRegisteredEvent;
+use App\Events\RegisterCustomerEvent;
+use App\Mail\WelcomeMail;
 use App\Models\Company;
 use App\Models\Customer;
 use App\View;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CustomerController extends Controller
 {
@@ -43,7 +47,9 @@ class CustomerController extends Controller
 
         // dd($data);
 
-        Customer::create($data);
+        event(new NewCustomerRegisteredEvent($data));
+
+        $customerData = Customer::create($data);
 
         // return back();
         return redirect('/customers');
