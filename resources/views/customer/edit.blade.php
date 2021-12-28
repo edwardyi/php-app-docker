@@ -18,7 +18,7 @@
 
 <div class="row">
     <div class="col-12">
-        <form action="/customers/{{$customer->id}}" method="POST">
+        <form action="/customers/{{$customer->id}}" method="POST" enctype="multipart/form-data">
             @method('PATCH')
             @include('customer.form')
             <button type="submit" class="btn btn-primary">Save</button>

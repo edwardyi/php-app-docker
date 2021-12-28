@@ -36,3 +36,9 @@
 
     <div>{{$errors->first('company_id')}}</div>
 </div>
+
+<div class="form-group d-flex flex-column">
+    <label for="image">Image</label>
+    <input type="file" name="image" />
+    <div>{{$errors->first('image')}}</div>
+</div>

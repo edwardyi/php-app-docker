@@ -23,6 +23,12 @@
         <p><strong>Email</strong> {{$customerData->email}}</p>
         <p> <strong>Company</strong> {{$customerData->company->name}}</p>
         <p><strong>Status</strong> {{$customerData->active}}</p>
+        @if ($customerData->image)
+        <p><strong>Image</strong> 
+            <img alt="{{$customerData->name}}" 
+                src={{asset('/storage/'.$customerData->image)}} class="img-thumbnail" />
+        </p>
+        @endif
     </div>
 </div>
 @endsection

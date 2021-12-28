@@ -37,22 +37,86 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $data = $this->validateRequest();
+
+        // $data = $request->validate([
+        //     'name' => 'required|min:3',
+        //     'email' => 'required|email',
+        //     'active' => 'required|integer',
+        //     // 'random' => '',
+        //     'company_id' => 'required'
+        // ]);
+
+        // dd($data);
+
+        $customerData = Customer::create($data);
+
+        $this->storeImage($customerData);
+
+        // unset($data['image']);
+
+        // event(new NewCustomerRegisteredEvent($data));
+
+        // return back();
+        return redirect('/customers');
+    }
+
+    private function storeImage($customer)
+    {
+        if (request()->has('image')) {
+            $customer->update([
+                'image' => request()->image->store('uploads', 'public'),
+            ]);
+        }
+    }
+
+    private function validateRequest()
+    {
+        return request()->validate([
             'name' => 'required|min:3',
             'email' => 'required|email',
             'active' => 'required|integer',
             // 'random' => '',
-            'company_id' => 'required'
+            'company_id' => 'required',
+            'image' => 'sometimes|file|image|max:5000'
         ]);
+        // return tap(request()->validate([
+        //     'name' => 'required|min:3',
+        //     'email' => 'required|email',
+        //     'active' => 'required|integer',
+        //     // 'random' => '',
+        //     'company_id' => 'required'
+        // ]), function($data) {
+        //     if (request()->hasFile('image')) {
+        //         $result = request()->validate([
+        //             'image' => 'file|image|max:5000'
+        //         ]);
+
+        //         var_dump(array_merge($data, $result));
+
+        //         return array_merge($data, $result);
+        //         // echo 'gg';
+        //     }
+        // });
+        // $data = request()->validate([
+        //     'name' => 'required|min:3',
+        //     'email' => 'required|email',
+        //     'active' => 'required|integer',
+        //     // 'random' => '',
+        //     'company_id' => 'required'
+        // ]);
+
+        // // echo request()->hasFile('image');
+
+        // if (request()->hasFile('image')) {
+        //     $data = array_merge($data, request()->validate([
+        //         'image' => 'file|image|max:5000'
+        //     ]));
+        // }
 
         // dd($data);
 
-        event(new NewCustomerRegisteredEvent($data));
-
-        $customerData = Customer::create($data);
-
-        // return back();
-        return redirect('/customers');
+        // return $data; 
     }
 
     public function show(Customer|int $customer)
@@ -75,14 +139,17 @@ class CustomerController extends Controller
 
     public function update(Customer $customer)
     {
-        $data = request()->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email',
-            'active' => 'required|integer',
-            'company_id' => 'required'
-        ]);
+        $data = $this->validateRequest();
+        // $data = request()->validate([
+        //     'name' => 'required|min:3',
+        //     'email' => 'required|email',
+        //     'active' => 'required|integer',
+        //     'company_id' => 'required'
+        // ]);
 
         $customer->update($data);
+
+        $this->storeImage($customer);
 
         Return redirect('/customers/'.$customer->id);
     }
