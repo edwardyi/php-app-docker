@@ -11,6 +11,8 @@ use App\View;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageManager;
 
 class CustomerController extends Controller
 {
@@ -53,9 +55,9 @@ class CustomerController extends Controller
 
         $this->storeImage($customerData);
 
-        // unset($data['image']);
+        unset($data['image']);
 
-        // event(new NewCustomerRegisteredEvent($data));
+        event(new NewCustomerRegisteredEvent($data));
 
         // return back();
         return redirect('/customers');
@@ -63,10 +65,14 @@ class CustomerController extends Controller
 
     private function storeImage($customer)
     {
-        if (request()->has('image')) {
+        if (request()->hasFile('image')) {
+
             $customer->update([
                 'image' => request()->image->store('uploads', 'public'),
             ]);
+
+            $image = Image::make(public_path('storage/'.$customer->image))->fit(300, 200, null, 'top-left');
+            $image->save();
         }
     }
 
