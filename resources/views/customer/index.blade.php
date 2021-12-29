@@ -3,11 +3,14 @@
 @section('title', 'Customer List')
 
 @section('content')
+
 <div class="row">
-    <div class="col-12">
-        <h1>Customer List</h1>
-        <p><a href="/customers/create">Create Customer</a></p>
-    </div>
+    @can('create', App\Models\Customer::class)
+        <div class="col-12">
+            <h1>Customer List</h1>
+            <p><a href="/customers/create">Create Customer</a></p>
+        </div>
+    @endcan
 </div>
 
 <div class="row">
@@ -18,11 +21,22 @@
             </span>
         </div>
         <div class="col-4">
+
+            @can('view', $customer)
             <span>
                 <p>
                     <a href="/customers/{{$customer->id}}">{{$customer->name}}</a>
                 </p>
             </span>
+            @endcan
+
+            @cannot('view', $customer)
+            <span>
+                <p>
+                    {{$customer->name}}
+                </p>
+            </span>
+            @endcannot
         </div>
         <div class="col-4">
             <span>

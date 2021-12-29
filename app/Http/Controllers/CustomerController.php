@@ -41,6 +41,8 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('create', Customer::class);
+
         $data = $this->validateRequest();
 
         // $data = $request->validate([
@@ -127,7 +129,8 @@ class CustomerController extends Controller
         // return $data; 
     }
 
-    public function show(Customer|int $customer)
+    // public function show(Customer|int $customer)
+    public function show(Customer $customer)
     {
         $customerData = Customer::find($customer);
         if (!$customerData) {
@@ -164,6 +167,8 @@ class CustomerController extends Controller
 
     public function destroy(Customer $customer)
     {
+        $this->authorize('destroy', Customer::class);
+
         $customer->delete();
 
         Return redirect('/customers');

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Middleware\ShowOddPage;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,15 +40,17 @@ Route::get('/customer-test', function() {
 
 // https://stackoverflow.com/questions/63807930/target-class-controller-does-not-exist-laravel-8
 // Route::get('/customers', [CustomerController::class, "list"]);
-// Route::get('/customers', 'App\Http\Controllers\CustomerController@index');
-// Route::get('/customers/create', 'App\Http\Controllers\CustomerController@create');
-// Route::get('/customers/{customer}', [CustomerController::class, 'show']);
-// Route::get('/customers/{customer}/edit', [CustomerController::class, 'edit']);
-// Route::post('/customers', [CustomerController::class, 'store']);
-// Route::patch('/customers/{customer}', [CustomerController::class, 'update']);
-// Route::delete('/customers/{customer}', [CustomerController::class, 'destroy']);
+Route::get('/customers', 'App\Http\Controllers\CustomerController@index')->name('customers.index');
+Route::get('/customers/create', 'App\Http\Controllers\CustomerController@create')->name('customers.create');
+// Route::get('/customers/{customerData}', function(Customer $customerData) {return view('customer.show', compact('customerData')); }, 'App\Http\Controllers\CustomerController@show')->middleware('can:view,customerData');
+Route::get('/customers/{customer}', [CustomerController::class, 'show'])->middleware('can:view,customer');
+// Route::get('/customers/{customer}', [CustomerController::class, 'show'])->middleware('can:view,customer'); // ->name('customers.show')
+Route::get('/customers/{customer}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
+Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
+Route::patch('/customers/{customer}', [CustomerController::class, 'update'])->name('customers.update');
+Route::delete('/customers/{customer}', [CustomerController::class, 'destroy'])->name('customer.destroy');
 
-Route::resource('/customers', CustomerController::class); // ->middleware('auth')
+// Route::resource('/customers', CustomerController::class); // ->middleware('auth')
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
