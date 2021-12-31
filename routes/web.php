@@ -6,6 +6,7 @@ use App\Http\Middleware\ShowOddPage;
 use App\Models\Customer;
 use App\Models\Phone;
 use App\Models\Post;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -90,4 +91,30 @@ Route::get('/test-user-posts', function() {
     $user->push();
 
     return $user->posts;
+});
+
+Route::get('/test-user-role', function() {
+
+    $user = User::first();
+
+    $roles = Role::all();
+
+    // $user->roles()->attach($roles);
+    // $user->roles()->sync([1, 3, 5]);
+    // $user->roles()->detach([1]);
+    $user->roles()->sync([3, 5]);
+
+    $user->roles()->syncWithoutDetaching([1]);
+
+    // return collection instead of relation model object
+    return $user->roles;
+
+    // dd($roles, $user);
+
+    // dd($user, $role);
+
+    // $user = User::factory()->create();
+    // $role = Role::factory()->create();
+    // $role->user->push();
+    
 });
