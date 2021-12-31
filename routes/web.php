@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Middleware\ShowOddPage;
 use App\Models\Customer;
 use App\Models\Phone;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -68,4 +69,25 @@ Route::get('/test-user-phone', function() {
     $user->phone()->save($phone);
 
     return $phone;
+});
+
+Route::get('/test-user-posts', function() {
+    $user = User::factory()->create();
+
+    $user->posts()->create([
+        'title' => 'testing',
+        'body' => 'something interesting',
+        'user_id' => 45
+    ]);
+
+    // property return collection
+    // function return hasMany relation model
+    // dd($user, $user->posts, $user->posts());
+
+    $user->posts->first()->title = "new title";
+    $user->posts->first()->body = "new body";
+
+    $user->push();
+
+    return $user->posts;
 });
