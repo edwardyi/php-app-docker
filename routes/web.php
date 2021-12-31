@@ -4,6 +4,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Middleware\ShowOddPage;
 use App\Models\Customer;
+use App\Models\Phone;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,3 +58,14 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/test-random', [App\Http\Controllers\HomeController::class, 'test'])->name('test.odd.page')->middleware(ShowOddPage::class);
+
+
+Route::get('/test-user-phone', function() {
+    $user = User::factory()->create();
+    $phone = new Phone();
+
+    $phone->phone = '123-123-1234';
+    $user->phone()->save($phone);
+
+    return $phone;
+});
