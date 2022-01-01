@@ -118,3 +118,19 @@ Route::get('/test-user-role', function() {
     // $role->user->push();
     
 });
+
+
+Route::get('/test-get-pivot-data', function() {
+    $user = User::first();
+
+    $pivot = [];
+    foreach ($user->roles as $rowRole) {
+        if ($rowRole->pivot->name && !in_array($rowRole->pivot, $pivot)) {
+            array_push($pivot, $rowRole->pivot->name);
+        }
+    }
+
+    dd($user->roles->first()->pivot);
+
+    return $pivot;
+});
