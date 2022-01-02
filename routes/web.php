@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\ShowOddPage;
 use App\Models\Customer;
 use App\Models\Phone;
@@ -134,3 +136,6 @@ Route::get('/test-get-pivot-data', function() {
 
     return $pivot;
 });
+
+Route::get('profile/{profile}', [ProfileController::class, 'show']);
+Route::get('posts/{post}-{slug}', [PostController::class, 'show']);
