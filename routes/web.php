@@ -139,3 +139,14 @@ Route::get('/test-get-pivot-data', function() {
 
 Route::get('profile/{profile}', [ProfileController::class, 'show']);
 Route::get('posts/{post}-{slug}', [PostController::class, 'show']);
+
+Route::get('/test-translation', function() {
+
+    // dd(App::currentLocale());
+
+    App::setlocale('en');
+
+    $post = Post::find(1);
+
+    return view('welcome', compact('post'));
+});

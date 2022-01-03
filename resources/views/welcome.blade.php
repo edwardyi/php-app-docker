@@ -103,6 +103,14 @@
 
                 Path: <a href="{{$post->path()}}">Link</a>
 
+                <h1>{{__('text.introduction', ['name' => 'testing'])}}</h1>
+
+                <p>{{__('text.welcome')}}</p>
+
+                <span>{{trans_choice('text.minutes_ago', 1, ['value' => 1])}}</span>
+
+                <span>{{trans_choice('text.minutes_ago', 5, ['value' => 5])}}</span>
+
                 <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
                     <div class="text-center text-sm text-gray-500 sm:text-left">
                         <div class="flex items-center">
