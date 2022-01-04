@@ -19,6 +19,8 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+
+        <link rel="stylesheet" href="{{mix('/css/app.css')}}"> </link>
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
@@ -100,6 +102,12 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="flex-center position-ref full-height" id="app">
+                    <image-upload></image-upload>
+                </div>
+
+                <script src={{mix("/js/app.js")}}?image-upload-test1></script>
 
                 Path: <a href="{{$post->path()}}">Link</a>
 

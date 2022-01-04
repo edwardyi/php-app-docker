@@ -21,6 +21,8 @@ window.Vue = require('vue').default;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
+Vue.component('image-upload', require('./components/ImageUpload.vue').default);
+
 Vue.component('my-test-button', require('./components/TestComponent.vue').default);
 
 /**

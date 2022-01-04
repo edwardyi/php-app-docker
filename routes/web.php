@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UploadController;
 use App\Http\Middleware\ShowOddPage;
 use App\Models\Customer;
 use App\Models\Phone;

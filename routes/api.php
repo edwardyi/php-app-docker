@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TestVueController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/test-vue', [TestVueController::class, 'index']);
+
+Route::post('/images', [UploadController::class, 'store']);
