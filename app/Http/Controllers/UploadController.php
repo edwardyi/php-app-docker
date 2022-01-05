@@ -5,11 +5,34 @@ namespace App\Http\Controllers;
 use App\Models\ImageUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 class UploadController extends Controller
 {
+    public function index()
+    {
+        $images = ImageUpload::all();
+
+        return view("internals.image-upload", compact("images"));
+    }
+
+    public function destroy(ImageUpload $imageUpload)
+    {
+        // delete table data
+        File::delete([
+            public_path($imageUpload->original),
+            public_path($imageUpload->thumbnail)
+        ]);
+        
+        // delete local file(original and thumbnail)
+        $imageUpload->delete();
+
+        // redirect to index
+        return redirect('/upload-image');
+    }
+
     public function store()
     {
         $images = request()->file('file');

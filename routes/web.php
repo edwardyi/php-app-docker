@@ -151,3 +151,6 @@ Route::get('/test-translation', function() {
 
     return view('welcome', compact('post'));
 });
+
+Route::get("/upload-image", [UploadController::class, "index"]);
+Route::delete("/upload-image/{imageUpload}", [UploadController::class, "destroy"]);

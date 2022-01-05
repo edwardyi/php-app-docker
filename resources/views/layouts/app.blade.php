@@ -9,9 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}?gggdd" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -81,5 +78,7 @@
             </div>
         </main>
     </div>
+
+    <script src={{mix("/js/app.js")}}?image-upload-test1></script>
 </body>
 </html>

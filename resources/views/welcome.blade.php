@@ -103,12 +103,6 @@
                     </div>
                 </div>
 
-                <div class="flex-center position-ref full-height" id="app">
-                    <image-upload></image-upload>
-                </div>
-
-                <script src={{mix("/js/app.js")}}?image-upload-test1></script>
-
                 Path: <a href="{{$post->path()}}">Link</a>
 
                 <h1>{{__('text.introduction', ['name' => 'testing'])}}</h1>
